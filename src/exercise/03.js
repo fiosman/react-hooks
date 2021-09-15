@@ -33,11 +33,15 @@ function Display({name, animal}) {
 function App() {
   // 🐨 add a useState for the animal
   const [name, setName] = React.useState('')
+  const [animal, setAnimal] = React.useState('')
   return (
     <form>
       <Name name={name} onNameChange={event => setName(event.target.value)} />
       {/* 🐨 pass the animal and onAnimalChange prop here (similar to the Name component above) */}
-      <FavoriteAnimal />
+      <FavoriteAnimal
+        animal={animal}
+        onAnimalChange={e => setAnimal(e.target.value)}
+      />
       {/* 🐨 pass the animal prop here */}
       <Display name={name} />
     </form>
