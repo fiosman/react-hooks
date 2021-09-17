@@ -43,7 +43,7 @@ function App() {
         onAnimalChange={e => setAnimal(e.target.value)}
       />
       {/* 🐨 pass the animal prop here */}
-      <Display name={name} />
+      <Display name={name} animal={animal} />
     </form>
   )
 }
