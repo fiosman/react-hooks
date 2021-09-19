@@ -17,11 +17,7 @@ function FavoriteAnimal({animal, onAnimalChange}) {
   return (
     <div>
       <label htmlFor="animal">Favorite Animal: </label>
-      <input
-        id="animal"
-        value={animal}
-        onChange={event => setAnimal(event.target.value)}
-      />
+      <input id="animal" value={animal} onChange={onAnimalChange} />
     </div>
   )
 }
