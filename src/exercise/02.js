@@ -4,9 +4,9 @@
 import * as React from 'react'
 
 function useLocalStorageState(key, defaultVal = '') {
-  const [localStorageState, setLocalStorageState] = React.useState(() => {
-    window.localStorage.getItem(key) || defaultVal
-  })
+  const [localStorageState, setLocalStorageState] = React.useState(
+    () => window.localStorage.getItem(key) || defaultVal,
+  )
 
   React.useEffect(() => {
     window.localStorage.setItem(key, localStorageState)
