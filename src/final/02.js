@@ -1,6 +1,8 @@
 // useEffect: persistent state
 // http://localhost:3000/isolated/final/02.js
 
+//simple test
+
 import * as React from 'react'
 
 function Greeting({initialName = ''}) {
