@@ -5,7 +5,9 @@ import * as React from 'react'
 
 function Board() {
   const [squares, setSquares] = React.useState(
-    () => window.localStorage.getItem('gameState') || Array(9).fill(null),
+    () =>
+      JSON.parse(window.localStorage.getItem('gameState')) ||
+      Array(9).fill(null),
   )
   const nextValue = calculateNextValue(squares)
   const winner = calculateWinner(squares)
@@ -13,7 +15,7 @@ function Board() {
 
   React.useEffect(() => {
     console.log(squares)
-    window.localStorage.setItem('gameState', squares)
+    window.localStorage.setItem('gameState', JSON.stringify(squares))
   }, [squares])
 
   function selectSquare(square) {
@@ -83,6 +85,7 @@ function calculateStatus(winner, squares, nextValue) {
 
 // eslint-disable-next-line no-unused-vars
 function calculateNextValue(squares) {
+  console.log(squares)
   return squares.filter(Boolean).length % 2 === 0 ? 'X' : 'O'
 }
 
