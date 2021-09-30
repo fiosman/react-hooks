@@ -7,7 +7,8 @@ import VanillaTilt from 'vanilla-tilt'
 
 function Tilt({children}) {
   // 🐨 create a ref here with React.useRef()
-
+  const ref = REact.useRef()
+  useEffect(() => {})
   // 🐨 add a `React.useEffect` callback here and use VanillaTilt to make your
   // div look fancy.
   // 💰 like this:
