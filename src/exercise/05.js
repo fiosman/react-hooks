@@ -16,7 +16,7 @@ function Tilt({children}) {
       glare: true,
       'max-glare': 0.5,
     })
-  })
+  }, [])
   // 🐨 add a `React.useEffect` callback here and use VanillaTilt to make your
   // div look fancy.
   // 💰 like this:
@@ -38,7 +38,7 @@ function Tilt({children}) {
 
   // 🐨 add the `ref` prop to the `tilt-root` div here:
   return (
-    <div className="tilt-root">
+    <div className="tilt-root" ref={titltRef}>
       <div className="tilt-child">{children}</div>
     </div>
   )
