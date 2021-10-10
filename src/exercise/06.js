@@ -11,17 +11,27 @@ import {
 
 function PokemonInfo({pokemonName}) {
   const [pokemon, setPokemon] = useState(null)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     if (!pokemonName) {
       return
     }
     setPokemon(null)
-    fetchPokemon(pokemonName).then(pokemonData => {
-      return setPokemon(pokemonData)
-    })
+    setError(null)
+    fetchPokemon(pokemonName)
+      .then(pokemonData => setPokemon(pokemonData))
+      .catch(err => setError(err))
   }, [pokemonName])
+
   function pokemonRender() {
+    if (error)
+      return (
+        <div role="alert">
+          There was an error:{' '}
+          <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+        </div>
+      )
     if (!pokemonName) {
       return <h2>Submit a pokemon</h2>
     }
