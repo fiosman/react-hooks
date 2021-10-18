@@ -12,18 +12,20 @@ import {
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {hasError: false}
+    this.state = {
+      error: null,
+    }
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return {hasError: true}
+    return {error: error}
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.error) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
+      return <this.props.FallBack error={this.state.error} />
     }
 
     return this.props.children
@@ -66,6 +68,15 @@ function PokemonInfo({pokemonName}) {
   return <div>{pokemonRender()}</div>
 }
 
+function ErrorFallBack({error}) {
+  return (
+    <div role="alert">
+      There was an error:{' '}
+      <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+    </div>
+  )
+}
+
 function App() {
   const [pokemonName, setPokemonName] = React.useState('')
 
@@ -77,7 +88,7 @@ function App() {
     <div className="pokemon-info-app">
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
-      <ErrorBoundary>
+      <ErrorBoundary FallBack={ErrorFallBack}>
         <div className="pokemon-info">
           <PokemonInfo pokemonName={pokemonName} />
         </div>
