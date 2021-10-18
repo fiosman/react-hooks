@@ -1,6 +1,6 @@
 // useEffect: HTTP requests
 // http://localhost:3000/isolated/exercise/06.js
-import React, {Component} from 'react'
+import React from 'react'
 import {useState, useEffect} from 'react'
 import {
   PokemonForm,
@@ -24,8 +24,9 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.error) {
+      const {FallBack} = this.props
       // You can render any custom fallback UI
-      return <this.props.FallBack error={this.state.error} />
+      return <FallBack error={this.state.error} />
     }
 
     return this.props.children
