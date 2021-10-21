@@ -8,7 +8,7 @@ import {
   PokemonDataView,
   fetchPokemon,
 } from '../pokemon'
-
+import {ErrorBoundary} from 'react-error-boundary'
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props)
