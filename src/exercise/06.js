@@ -69,11 +69,12 @@ function PokemonInfo({pokemonName}) {
   return <div>{pokemonRender()}</div>
 }
 
-function ErrorFallBack({error}) {
+function ErrorFallBack({error, resetErrorBoundary}) {
   return (
     <div role="alert">
       There was an error:{' '}
       <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+      <button onlick={resetErrorBoundary}>Try again</button>
     </div>
   )
 }
