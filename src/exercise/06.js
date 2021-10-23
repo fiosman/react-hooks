@@ -9,29 +9,29 @@ import {
   fetchPokemon,
 } from '../pokemon'
 import {ErrorBoundary} from 'react-error-boundary'
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      error: null,
-    }
-  }
+// class ErrorBoundary extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       error: null,
+//     }
+//   }
 
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
-    return {error: error}
-  }
+//   static getDerivedStateFromError(error) {
+//     // Update state so the next render will show the fallback UI.
+//     return {error: error}
+//   }
 
-  render() {
-    if (this.state.error) {
-      const {FallBack} = this.props
-      // You can render any custom fallback UI
-      return <FallBack error={this.state.error} />
-    }
+//   render() {
+//     if (this.state.error) {
+//       const {FallBack} = this.props
+//       // You can render any custom fallback UI
+//       return <FallBack error={this.state.error} />
+//     }
 
-    return this.props.children
-  }
-}
+//     return this.props.children
+//   }
+// }
 
 function PokemonInfo({pokemonName}) {
   const [state, setState] = useState({
@@ -90,7 +90,10 @@ function App() {
     <div className="pokemon-info-app">
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
       <hr />
-      <ErrorBoundary FallBack={ErrorFallBack} key={pokemonName}>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallBack}
+        onReset={() => setPokemonName('')}
+      >
         <div className="pokemon-info">
           <PokemonInfo pokemonName={pokemonName} />
         </div>
